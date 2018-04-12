@@ -1,5 +1,5 @@
 all:
-	g++  src/main.cpp src/Node.cpp -o Tree.out
+	g++ -g -Wall src/main.cpp src/Tree.cpp -o Tree.out
 run:
 	./Tree.out
 clean :
