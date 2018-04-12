@@ -1,5 +1,8 @@
 #include "Tree.h"
 
+/*
+  Constructors
+*/
 template <typename V>
 Node<V>::Node(V in)
 {
@@ -15,11 +18,32 @@ Node<V>::Node()
 }
 
 template <typename V>
+Node<V> * Node<V>::addLeft(V in)
+{
+  if(!left)
+  {
+    left = new Node(in);
+  }
+  return left;
+}
+template <typename V>
+Node<V> * Node<V>::addRight(V in)
+{
+  if(!right)
+  {
+    right = new Node(in);
+  }
+  return right;
+}
+
+/*
+  Gets
+*/
+template <typename V>
 V Node<V>::getValue()
 {
   return value;
 }
-
 template <typename V>
 Node<V> * Node<V>::getLeft()
 {

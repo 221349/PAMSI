@@ -12,6 +12,8 @@ private:
 public:
   Node();
   Node(V in);
+  Node<V> * addLeft(V in);
+  Node<V> * addRight(V in);
 
   V getValue();
   Node<V> * getLeft();
@@ -21,12 +23,12 @@ public:
   int check();
   int balance();
 
-  Node<V> * rotateright();
-  Node<V> * rotateleft();
+  Node<V> * rotateRight();
+  Node<V> * rotateLeft();
 };
 
 template <typename V>
-class Tree{
+class AVLTree{
 private:
   Node<V> * main;
 public:
