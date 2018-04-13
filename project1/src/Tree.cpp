@@ -17,25 +17,6 @@ Node<V>::Node()
   right = 0;
 }
 
-template <typename V>
-Node<V> * Node<V>::addLeft(V in)
-{
-  if(!left)
-  {
-    left = new Node(in);
-  }
-  return left;
-}
-template <typename V>
-Node<V> * Node<V>::addRight(V in)
-{
-  if(!right)
-  {
-    right = new Node(in);
-  }
-  return right;
-}
-
 /*
   Gets
 */
@@ -74,4 +55,107 @@ int Node<V>::maxHeight()
   }
   out++;
   return out;
+}
+
+template <typename V>
+int Node<V>::minHeight()
+{
+  int out = 0;
+  int tmp = 0;
+  if(left)
+  {
+    out += left->minHeight();
+  }
+  else
+  {
+    return 1;
+  }
+  if(right)
+  {
+    tmp = right->minHeight();
+    if(out > tmp)
+    {
+      out = tmp;
+    }
+  }
+  else
+  {
+    return 1;
+  }
+  out++;
+  return out;
+}
+
+template <typename V>
+int Node<V>::add(V in)
+{
+  if(in == value) // check if same node exis
+  {
+    return 1;
+  }
+  else
+  {
+    // add to left branch
+    if(in < value)
+    {
+      if(!left)
+      {
+        left = new Node(in);
+      }
+      else
+      {
+        if(left->add(in))
+        {
+          return 1;
+        }
+      }
+      return 0;
+    }
+    // add to right branch
+    else
+    {
+      if(!right)
+      {
+        right = new Node(in);
+      }
+      else
+      {
+        if(right->add(in))
+        {
+          return 1;
+        }
+      }
+      return 0;
+    }
+
+  }
+}
+
+
+template <typename V>
+int AVLTree<V>::add(V in)
+{
+  if(!main)
+  {
+    main = new Node<V>(in);
+    return 0;
+  }
+  else
+  {
+    if(main->add(in))
+    {
+      return 1;
+    }
+    /*
+      !!!!!!!! Put Balance here
+    */
+    return 0;
+  }
+}
+
+
+template <typename V>
+int AVLTree<V>::add(V in)
+{
+  
 }

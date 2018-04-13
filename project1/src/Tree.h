@@ -1,6 +1,8 @@
 #ifndef TREE_H
 #define TREE_H
 
+#include <iostream>
+
 using namespace std;
 
 template <typename V>
@@ -12,8 +14,7 @@ private:
 public:
   Node();
   Node(V in);
-  Node<V> * addLeft(V in);
-  Node<V> * addRight(V in);
+  int add(V in);
 
   V getValue();
   Node<V> * getLeft();
