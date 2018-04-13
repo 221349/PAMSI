@@ -131,6 +131,35 @@ int Node<V>::add(V in)
   }
 }
 
+template <typename V>
+int Node<V>::display(int level)
+{
+  int out = 1;
+  if(left)
+  {
+    out += left->display(level + 1);
+    for(int i = 0; i < level; i++)
+    {
+      cout << "  ";
+    }
+    cout << " /\n";
+  }
+  for(int i = 0; i < level; i++)
+  {
+    cout << "  ";
+  }
+  cout << value << endl;
+  if(right)
+  {
+    for(int i = 0; i < level; i++)
+    {
+      cout << "  ";
+    }
+    cout << " \\\n";
+    out += right->display(level + 1);
+  }
+  return out;
+}
 
 template <typename V>
 int AVLTree<V>::add(V in)
@@ -153,9 +182,17 @@ int AVLTree<V>::add(V in)
   }
 }
 
-
 template <typename V>
-int AVLTree<V>::add(V in)
+void AVLTree<V>::display()
 {
-  
+  if(main)
+  {
+    int nodes = main->display(0);
+    cout << "\n\n  Nodes: " << nodes;
+    cout << "\n  Height: " << main->maxHeight() << endl;
+  }
+  else
+  {
+    cout << "No tree\n";
+  }
 }

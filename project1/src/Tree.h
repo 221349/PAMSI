@@ -6,7 +6,8 @@
 using namespace std;
 
 template <typename V>
-class Node{
+class Node
+{
 private:
   V value;
   Node<V> * left;
@@ -26,6 +27,7 @@ public:
 
   Node<V> * rotateRight();
   Node<V> * rotateLeft();
+  int display(int level);
 };
 
 template <typename V>
@@ -34,10 +36,9 @@ private:
   Node<V> * main;
 public:
   int add(V in);
-  int search(V in);
   int remove(V in);
   V find(V in);
-  void show();
+  void display();
 };
 
 #endif
