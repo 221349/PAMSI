@@ -132,12 +132,90 @@ int Node<V>::add(V in)
 }
 
 template <typename V>
+int Node<V>::differenceFactor()
+{
+  return (this->maxHeight() - this->minHeight());
+}
+
+template <typename V>
+int Node<V>::balanceFactor()
+{
+  int mright = 0;
+  int mleft = 0;
+  if(left)
+  {
+    mleft = left->maxHeight();
+  }
+  if(right)
+  {
+    mright = right->maxHeight();
+  }
+  return (mright - mleft);
+}
+
+template <typename V>
+Node<V> * Node<V>::rotateLeft()
+{
+  Node<V> * tmp = right;
+  right = right->left;
+  tmp->left = this;
+  return tmp;
+}
+
+template <typename V>
+Node<V> * Node<V>::rotateRight()
+{
+  Node<V> * tmp = left;
+  left = left->right;
+  tmp->right = this;
+  return tmp;
+}
+
+template <typename V>
+Node<V> * Node<V>::balance()
+{
+  if(this->differenceFactor() > 1)
+  {
+    if(left)
+    {
+      if(left->differenceFactor() > 1)
+      {
+        left = left->balance();
+      }
+    }
+    if(right)
+    {
+      if(right->differenceFactor() > 1)
+      {
+        right = right->balance();
+      }
+    }
+    if(this->balanceFactor() > 1)
+    {
+      return this->rotateLeft();
+    }
+    if(this->balanceFactor() < -1)
+    {
+      return this->rotateRight();
+    }
+    else
+    {
+      return this;
+    }
+  }
+  else
+  {
+    return this;
+  }
+}
+
+template <typename V>
 int Node<V>::display(int level)
 {
   int out = 1;
-  if(left)
+  if(right)
   {
-    out += left->display(level + 1);
+    out += right->display(level + 1);
     for(int i = 0; i < level; i++)
     {
       cout << "  ";
@@ -149,14 +227,14 @@ int Node<V>::display(int level)
     cout << "  ";
   }
   cout << value << endl;
-  if(right)
+  if(left)
   {
     for(int i = 0; i < level; i++)
     {
       cout << "  ";
     }
     cout << " \\\n";
-    out += right->display(level + 1);
+    out += left->display(level + 1);
   }
   return out;
 }
@@ -175,9 +253,7 @@ int AVLTree<V>::add(V in)
     {
       return 1;
     }
-    /*
-      !!!!!!!! Put Balance here
-    */
+    main = main->balance();
     return 0;
   }
 }
@@ -195,4 +271,11 @@ void AVLTree<V>::display()
   {
     cout << "No tree\n";
   }
+}
+
+
+template <typename V>
+void AVLTree<V>::tmp()
+{
+  main = main->rotateLeft();
 }

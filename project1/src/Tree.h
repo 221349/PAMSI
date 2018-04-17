@@ -22,11 +22,13 @@ public:
   Node<V> * getRight();
   int maxHeight();
   int minHeight();
-  int check();
-  int balance();
+  int differenceFactor();
+  int balanceFactor();
 
   Node<V> * rotateRight();
   Node<V> * rotateLeft();
+  Node<V> * balance();
+
   int display(int level);
 };
 
@@ -39,6 +41,7 @@ public:
   int remove(V in);
   V find(V in);
   void display();
+  void tmp();
 };
 
 #endif
