@@ -140,40 +140,80 @@ int Node<V>::differenceFactor()
 template <typename V>
 int Node<V>::balanceFactor()
 {
-  int mright = 0;
-  int mleft = 0;
+
+  int minleft = 0;
+  int maxleft = 0;
+  int minright = 0;
+  int maxright = 0;
   if(left)
   {
-    mleft = left->maxHeight();
+    minleft = left->minHeight();
+    maxleft = left->maxHeight();
   }
   if(right)
   {
-    mright = right->maxHeight();
+    minright = right->minHeight();
+    maxright = right->maxHeight();
   }
-  return (mright - mleft);
+  if((maxright - minleft) > (maxleft - minright))
+  {
+    return maxright - minleft;
+  }
+  if((maxleft - minright) > (maxright - minleft))
+  {
+    return minright - maxleft;
+  }
+  return maxright - maxleft;
 }
 
 template <typename V>
 Node<V> * Node<V>::rotateLeft()
 {
+  if(!right)
+  {
+    return this;
+  }
   Node<V> * tmp = right;
   right = right->left;
   tmp->left = this;
+  if(tmp->left)
+  {
+    tmp->left = tmp->left->balance();
+  }
+  if(tmp->right)
+  {
+    tmp->right = tmp->right->balance();
+  }
   return tmp;
 }
 
 template <typename V>
 Node<V> * Node<V>::rotateRight()
 {
+  if(!left)
+  {
+    return this;
+  }
   Node<V> * tmp = left;
   left = left->right;
   tmp->right = this;
+  if(tmp->left)
+  {
+    tmp->left = tmp->left->balance();
+  }
+  if(tmp->right)
+  {
+    tmp->right = tmp->right->balance();
+  }
   return tmp;
 }
 
 template <typename V>
 Node<V> * Node<V>::balance()
 {
+  /*
+    Additional branches balancing
+    */
   if(this->differenceFactor() > 1)
   {
     if(left)
@@ -190,23 +230,33 @@ Node<V> * Node<V>::balance()
         right = right->balance();
       }
     }
-    if(this->balanceFactor() > 1)
-    {
-      return this->rotateLeft();
-    }
-    if(this->balanceFactor() < -1)
-    {
-      return this->rotateRight();
-    }
-    else
-    {
-      return this;
-    }
   }
-  else
+  /*
+    Main balancing
+    */
+  if(this->balanceFactor() > 1)
   {
-    return this;
+    if(right)
+    {
+      if(right->balanceFactor() == 1)
+      {
+        right = right->rotateRight();
+      }
+    }
+    return this->rotateLeft();
   }
+  if(this->balanceFactor() < -1)
+  {
+    if(left)
+    {
+      if(left->balanceFactor() == 1)
+      {
+        left = left->rotateLeft();
+      }
+    }
+    return this->rotateRight();
+  }
+  return this;
 }
 
 template <typename V>
@@ -239,21 +289,29 @@ int Node<V>::display(int level)
   return out;
 }
 
+
+
+template <typename V>
+AVLTree<V>::AVLTree()
+{
+  root = 0;
+}
+
 template <typename V>
 int AVLTree<V>::add(V in)
 {
-  if(!main)
+  if(!root)
   {
-    main = new Node<V>(in);
+    root = new Node<V>(in);
     return 0;
   }
   else
   {
-    if(main->add(in))
+    if(root->add(in))
     {
       return 1;
     }
-    main = main->balance();
+    root = root->balance();
     return 0;
   }
 }
@@ -261,21 +319,14 @@ int AVLTree<V>::add(V in)
 template <typename V>
 void AVLTree<V>::display()
 {
-  if(main)
+  if(root)
   {
-    int nodes = main->display(0);
-    cout << "\n\n  Nodes: " << nodes;
-    cout << "\n  Height: " << main->maxHeight() << endl;
+    int nodes = root->display(0);
+    cout << "\n  Nodes: " << nodes;
+    cout << "\n  Height: " << root->maxHeight() << endl;
   }
   else
   {
     cout << "No tree\n";
   }
-}
-
-
-template <typename V>
-void AVLTree<V>::tmp()
-{
-  main = main->rotateLeft();
 }

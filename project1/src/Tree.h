@@ -35,13 +35,13 @@ public:
 template <typename V>
 class AVLTree{
 private:
-  Node<V> * main;
+  Node<V> * root;
 public:
+  AVLTree();
   int add(V in);
   int remove(V in);
   V find(V in);
   void display();
-  void tmp();
 };
 
 #endif
