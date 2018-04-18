@@ -15,7 +15,9 @@ private:
 public:
   Node();
   Node(V in);
+  ~Node();
   int add(V in);
+  Node<V> * remove(V in);
 
   V getValue();
   Node<V> * getLeft();
@@ -25,6 +27,7 @@ public:
   int differenceFactor();
   int balanceFactor();
 
+  Node<V> * removeMin();
   Node<V> * rotateRight();
   Node<V> * rotateLeft();
   Node<V> * balance();

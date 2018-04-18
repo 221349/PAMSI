@@ -16,6 +16,18 @@ Node<V>::Node()
   left = 0;
   right = 0;
 }
+template <typename V>
+Node<V>::~Node()
+{
+  if(right)
+  {
+    delete right;
+  }
+  if(left)
+  {
+    delete left;
+  }
+}
 
 /*
   Gets
@@ -289,6 +301,64 @@ int Node<V>::display(int level)
   return out;
 }
 
+template <typename V>
+Node<V> * Node<V>::remove(V in)
+{
+  if(in == value) // check if same node exis
+  {
+    if(right)
+    {
+      if(right->left)
+      {
+        Node<V> * tmp = right->removeMin();
+        tmp->left = left;
+        tmp->right = right;
+        return tmp;
+      }
+      Node<V> * tmp = right;
+      tmp->left = left;
+      return tmp;
+    }
+    if(left)
+    {
+      return left;
+    }
+    return 0;
+  }
+    // remove from left branch
+  if(left)
+  {
+
+    if(in < value)
+    {
+      left = left->remove(in);
+      return this;
+    }
+  }
+    // remove from right branch
+  if(right)
+  {
+    {
+      right = right->remove(in);
+      return this;
+    }
+  }
+  return this;
+}
+
+template <typename V>
+Node<V> * Node<V>::removeMin()
+{
+  if(!left->left)
+  {
+    Node<V> * tmp = left;
+    left = left->right;
+    tmp->left = 0;
+    tmp->right = 0;
+    return tmp;
+  }
+  return left->removeMin();
+}
 
 
 template <typename V>
@@ -311,6 +381,22 @@ int AVLTree<V>::add(V in)
     {
       return 1;
     }
+    root = root->balance();
+    return 0;
+  }
+}
+
+
+template <typename V>
+int AVLTree<V>::remove(V in)
+{
+  if(!root)
+  {
+    return 1;
+  }
+  else
+  {
+    root = root->remove(in);
     root = root->balance();
     return 0;
   }
