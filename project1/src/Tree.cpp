@@ -6,13 +6,15 @@
 template <typename V>
 Node<V>::Node(V in)
 {
-  value = in;
+  value = new V;
+  *value = in;
   left = 0;
   right = 0;
 }
 template <typename V>
 Node<V>::Node()
 {
+  value = new V;
   left = 0;
   right = 0;
 }
@@ -35,7 +37,7 @@ Node<V>::~Node()
 template <typename V>
 V Node<V>::getValue()
 {
-  return value;
+  return *value;
 }
 template <typename V>
 Node<V> * Node<V>::getLeft()
@@ -96,51 +98,6 @@ int Node<V>::minHeight()
   }
   out++;
   return out;
-}
-
-template <typename V>
-int Node<V>::add(V in)
-{
-  if(in == value) // check if same node exis
-  {
-    return 1;
-  }
-  else
-  {
-    // add to left branch
-    if(in < value)
-    {
-      if(!left)
-      {
-        left = new Node(in);
-      }
-      else
-      {
-        if(left->add(in))
-        {
-          return 1;
-        }
-      }
-      return 0;
-    }
-    // add to right branch
-    else
-    {
-      if(!right)
-      {
-        right = new Node(in);
-      }
-      else
-      {
-        if(right->add(in))
-        {
-          return 1;
-        }
-      }
-      return 0;
-    }
-
-  }
 }
 
 template <typename V>
@@ -272,39 +229,68 @@ Node<V> * Node<V>::balance()
 }
 
 template <typename V>
-int Node<V>::display(int level)
+int Node<V>::add(V in)
 {
-  int out = 1;
-  if(right)
+  if(in == *value) // check if same node exis
   {
-    out += right->display(level + 1);
-    for(int i = 0; i < level; i++)
+    return 1;
+  }
+  else
+  {
+    // add to left branch
+    if(in < *value)
     {
-      cout << "  ";
+      if(!left)
+      {
+        left = new Node(in);
+      }
+      else
+      {
+        if(left->add(in))
+        {
+          return 1;
+        }
+      }
+      return 0;
     }
-    cout << " /\n";
-  }
-  for(int i = 0; i < level; i++)
-  {
-    cout << "  ";
-  }
-  cout << value << endl;
-  if(left)
-  {
-    for(int i = 0; i < level; i++)
+    // add to right branch
+    else
     {
-      cout << "  ";
+      if(!right)
+      {
+        right = new Node(in);
+      }
+      else
+      {
+        if(right->add(in))
+        {
+          return 1;
+        }
+      }
+      return 0;
     }
-    cout << " \\\n";
-    out += left->display(level + 1);
+
   }
-  return out;
+}
+
+template <typename V>
+Node<V> * Node<V>::removeMin()
+{
+  if(!left->left)
+  {
+    Node<V> * tmp = left;
+    left = left->right;
+    tmp->left = 0;
+    tmp->right = 0;
+    return tmp;
+  }
+  return left->removeMin();
 }
 
 template <typename V>
 Node<V> * Node<V>::remove(V in)
 {
-  if(in == value) // check if same node exis
+  if(in == *value) // check if same node exis
   {
     if(right)
     {
@@ -329,7 +315,7 @@ Node<V> * Node<V>::remove(V in)
   if(left)
   {
 
-    if(in < value)
+    if(in < *value)
     {
       left = left->remove(in);
       return this;
@@ -347,19 +333,129 @@ Node<V> * Node<V>::remove(V in)
 }
 
 template <typename V>
-Node<V> * Node<V>::removeMin()
+int Node<V>::find(V * buf)
 {
-  if(!left->left)
+  /*
+  if(buf == value) // check if same node exis
   {
-    Node<V> * tmp = left;
-    left = left->right;
-    tmp->left = 0;
-    tmp->right = 0;
-    return tmp;
+    return 1;
   }
-  return left->removeMin();
+  else
+  {
+    // add to left branch
+    if(in < value)
+    {
+      if(!left)
+      {
+        left = new Node(in);
+      }
+      else
+      {
+        if(left->add(in))
+        {
+          return 1;
+        }
+      }
+      return 0;
+    }
+    // add to right branch
+    else
+    {
+      if(!right)
+      {
+        right = new Node(in);
+      }
+      else
+      {
+        if(right->add(in))
+        {
+          return 1;
+        }
+      }
+      return 0;
+    }
+
+  }*/
+  return 0;
 }
 
+template <typename V>
+int Node<V>::display(int level)
+{
+  int out = 1;
+  if(right)
+  {
+    out += right->display(level + 1);
+    for(int i = 0; i < level; i++)
+    {
+      cout << "  ";
+    }
+    cout << " /\n";
+  }
+  for(int i = 0; i < level; i++)
+  {
+    cout << "  ";
+  }
+  cout << *value << endl;
+  if(left)
+  {
+    for(int i = 0; i < level; i++)
+    {
+      cout << "  ";
+    }
+    cout << " \\\n";
+    out += left->display(level + 1);
+  }
+  return out;
+}
+
+template <typename V>
+int Node<V>::preOrder(int level)
+{
+  cout << *value << " ";
+  int out = 1;
+  if(left)
+  {
+    out += left->preOrder(level + 1);
+  }
+  if(right)
+  {
+    out += right->preOrder(level + 1);
+  }
+  return out;
+}
+
+template <typename V>
+int Node<V>::inOrder(int level)
+{
+  int out = 1;
+  if(left)
+  {
+    out += left->inOrder(level + 1);
+  }
+  cout << *value << " ";
+  if(right)
+  {
+    out += right->inOrder(level + 1);
+  }
+  return out;
+}
+
+template <typename V>
+int Node<V>::postOrder(int level)
+{
+  int out = 1;
+  if(left)
+  {
+    out += left->postOrder(level + 1);
+  }
+  if(right)
+  {
+    out += right->postOrder(level + 1);
+  }
+  cout << *value << " ";
+  return out;
+}
 
 template <typename V>
 AVLTree<V>::AVLTree()
@@ -410,6 +506,48 @@ void AVLTree<V>::display()
     int nodes = root->display(0);
     cout << "\n  Nodes: " << nodes;
     cout << "\n  Height: " << root->maxHeight() << endl;
+  }
+  else
+  {
+    cout << "No tree\n";
+  }
+}
+
+template <typename V>
+void AVLTree<V>::preOrder()
+{
+  if(root)
+  {
+    int nodes = root->preOrder(0);
+    cout << "\n  Nodes: " << nodes << endl;
+  }
+  else
+  {
+    cout << "No tree\n";
+  }
+}
+
+template <typename V>
+void AVLTree<V>::inOrder()
+{
+  if(root)
+  {
+    int nodes = root->inOrder(0);
+    cout << "\n  Nodes: " << nodes << endl;
+  }
+  else
+  {
+    cout << "No tree\n";
+  }
+}
+
+template <typename V>
+void AVLTree<V>::postOrder()
+{
+  if(root)
+  {
+    int nodes = root->postOrder(0);
+    cout << "\n  Nodes: " << nodes << endl;
   }
   else
   {

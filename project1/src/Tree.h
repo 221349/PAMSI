@@ -9,7 +9,7 @@ template <typename V>
 class Node
 {
 private:
-  V value;
+  V * value;
   Node<V> * left;
   Node<V> * right;
 public:
@@ -17,6 +17,7 @@ public:
   Node(V in);
   ~Node();
   int add(V in);
+  int find(V * buf);
   Node<V> * remove(V in);
 
   V getValue();
@@ -33,6 +34,9 @@ public:
   Node<V> * balance();
 
   int display(int level);
+  int preOrder(int level);
+  int inOrder(int level);
+  int postOrder(int level);
 };
 
 template <typename V>
@@ -45,6 +49,9 @@ public:
   int remove(V in);
   V find(V in);
   void display();
+  void preOrder();
+  void inOrder();
+  void postOrder();
 };
 
 #endif
