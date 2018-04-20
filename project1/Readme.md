@@ -15,10 +15,10 @@ Dzewo posiada metody:
 ## Testy
 
   Wyszukiwanie elementów rzeczywiście jest bardzo szybkie.
-  
-  Z kolei dodawanie/usuwanie elementów ze względu na konieczność balansowania całego dzrewa zajmuje dość dużo czasu na obliczenia.
 
-  Przeprowadzone testy pokazały sprawność programu na poziomie elementów 2^12 (większ illość węzłów zajmuje za dużo czasu na obliczenia).
+  Z kolei czas na dodawanie/usuwanie elementów ze względu na konieczność balansowania całego dzrewa wzrasta wraz z rośnięciem drzewa.
+
+  Przeprowadzone testy pokazały sprawność programu na poziomie elementów 2^13 (większ illość węzłów zajmuje za dużo czasu na obliczenia).
 
   Działają opisane metody.
 

@@ -31,25 +31,6 @@ Node<V>::~Node()
   }
 }
 
-/*
-  Gets
-*/
-template <typename V>
-V Node<V>::getValue()
-{
-  return *value;
-}
-template <typename V>
-Node<V> * Node<V>::getLeft()
-{
-  return left;
-}
-template <typename V>
-Node<V> * Node<V>::getRight()
-{
-  return right;
-}
-
 template <typename V>
 int Node<V>::maxHeight()
 {

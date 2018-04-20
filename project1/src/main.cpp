@@ -151,7 +151,6 @@ void removeRandom(AVLTree <int> * a)
     {
       tmp = -rand() % (buf+1)/2;
     }
-    cout << "a";
     a->remove(tmp);
   }
 }
@@ -181,6 +180,6 @@ void help()
   << "7 - Pre-Order\n"
   << "8 - In-Order\n"
   << "9 - Post-Order\n"
-  << "-1 - display this help\n";
+  << "-1 - display this help\n"
   << "0 - exit.\n";
 }

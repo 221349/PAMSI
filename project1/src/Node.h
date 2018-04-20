@@ -12,6 +12,12 @@ private:
   V * value;
   Node<V> * left;
   Node<V> * right;
+
+  Node<V> * rotateRight();
+  Node<V> * rotateLeft();
+  int differenceFactor();
+  int balanceFactor();
+  Node<V> * removeMin();
 public:
   Node();
   Node(V in);
@@ -19,19 +25,10 @@ public:
   int add(V in);
   int find(V * buf);
   Node<V> * remove(V in);
+  Node<V> * balance();
 
-  V getValue();
-  Node<V> * getLeft();
-  Node<V> * getRight();
   int maxHeight();
   int minHeight();
-  int differenceFactor();
-  int balanceFactor();
-
-  Node<V> * removeMin();
-  Node<V> * rotateRight();
-  Node<V> * rotateLeft();
-  Node<V> * balance();
 
   int display(int level);
   int preOrder(int level);
