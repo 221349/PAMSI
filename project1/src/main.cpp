@@ -127,8 +127,11 @@ void addRandom(AVLTree <int> * a)
 void removeRandom(AVLTree <int> * a)
 {
   int n = 0;
+  int d = 0;
   cout << "Remove random values.\nSet level: ";
   cin >> n;
+  cout << "Set density: ";
+  cin >> d;
   int buf = 0;
   for(int i = 0; i < n; i++)
   {
@@ -140,7 +143,7 @@ void removeRandom(AVLTree <int> * a)
     buf += tmp;
   }
 
-  for (int i = 0; i < buf / 3; i++)
+  for (int i = 0; i < buf * d / 10; i++)
   {
     int tmp = 0;
     if((rand() % 2) == 1)
