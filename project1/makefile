@@ -3,4 +3,4 @@ all:
 run:
 	./Tree.out
 clean :
-	rm Queue
+	rm Tree.out
