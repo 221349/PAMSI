@@ -24,7 +24,7 @@ public:
   ~Node();
   int add(V in);
   int find(V * buf);
-  Node<V> * remove(V in);
+  Node<V> * remove(V in, int * rm_flag);
   Node<V> * balance();
 
   int maxHeight();

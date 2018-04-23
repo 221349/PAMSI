@@ -39,8 +39,19 @@ int AVLTree<V>::remove(V in)
   {
     return 1;
   }
-  root = root->remove(in);
-  root = root->balance();
+  int * check = new int(0);
+  Node<V> * tmp;
+  tmp = root->remove(in, check);
+  if(*check)
+  {
+    delete root;
+    root = tmp;
+  }
+  if(root)
+  {
+    root = root->balance();
+  }
+  delete check;
   return 0;
 }
 

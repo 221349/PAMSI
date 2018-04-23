@@ -21,14 +21,12 @@ Node<V>::Node()
 template <typename V>
 Node<V>::~Node()
 {
-  if(right)
-  {
-    delete right;
-  }
-  if(left)
-  {
-    delete left;
-  }
+  delete value;
+  delete left;
+  delete right;
+  value = 0;
+  left = 0;
+  right = 0;
 }
 
 template <typename V>
@@ -253,7 +251,7 @@ Node<V> * Node<V>::removeMin()
 }
 
 template <typename V>
-Node<V> * Node<V>::remove(V in)
+Node<V> * Node<V>::remove(V in, int * rm_flag)
 {
   if(in == *value) // check if same node exis
   {
@@ -264,19 +262,26 @@ Node<V> * Node<V>::remove(V in)
         Node<V> * tmp = right->removeMin();
         tmp->left = left;
         tmp->right = right;
-        delete value;
+        left = 0;
+        right = 0;
+        *rm_flag = 1;
         return tmp;
       }
       Node<V> * tmp = right;
       tmp->left = left;
-      delete value;
+      left = 0;
+      right = 0;
+      *rm_flag = 1;
       return tmp;
     }
     if(left)
     {
-      delete value;
       return left;
+      left = 0;
+      right = 0;
+      *rm_flag = 1;
     }
+    *rm_flag = 1;
     return 0;
   }
     // remove from left branch
@@ -284,7 +289,15 @@ Node<V> * Node<V>::remove(V in)
   {
     if(left)
     {
-      left = left->remove(in);
+      int * check = new int(0);
+      Node<V> * tmp;
+      tmp = left->remove(in, check);
+      if(*check)
+      {
+        delete left;
+        left = tmp;
+      }
+      delete check;
       return this;
     }
   }
@@ -293,7 +306,15 @@ Node<V> * Node<V>::remove(V in)
   {
     if(right)
     {
-      right = right->remove(in);
+      int * check = new int(0);
+      Node<V> * tmp;
+      tmp = right->remove(in, check);
+      if(*check)
+      {
+        delete right;
+        right = tmp;
+      }
+      delete check;
       return this;
     }
   }
