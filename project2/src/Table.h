@@ -8,16 +8,17 @@ class Table{
 private:
   T ** table;
   int size, amount;
-//  int allocate(int amount);
+
   void writeNull();
-  void grow(int newSize);
+  int resize(int newSize);
 public:
   Table();
   Table(int amount);
   ~Table();
-  int add(T in);
-  int remove(T in);
+  void add(T in);
+  int removeLast();
 
+  T get(int num);
 };
 
 #endif
