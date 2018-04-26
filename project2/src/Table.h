@@ -19,6 +19,10 @@ public:
   int removeLast();
 
   T get(int num);
+  int getAmount();
+  void sortMerge();
 };
+
+
 
 #endif

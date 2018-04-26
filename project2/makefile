@@ -1,5 +1,5 @@
 all:
-	g++ -g -Wall -pedantic src/main.cpp src/Table.cpp -o Sort.out
+	g++ -Wall -pedantic src/main.cpp src/Table.cpp -o Sort.out
 run:
 	./Sort.out
 clean :

@@ -19,7 +19,7 @@ int main(int argc, char *argv[])
   cin >> t;
   for(int i = 0; i < t; i++)
   {
-    h->removeLast();
+//    h->removeLast();
     // cout << h->get(i) << " ";
   }
   cout << "step 2\n";
@@ -27,6 +27,7 @@ int main(int argc, char *argv[])
   delete h;
   cout << "step 3\n";
   cin >> t;
+
   cout << "end\n";
   return 0;
 }

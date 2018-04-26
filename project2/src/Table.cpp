@@ -75,6 +75,12 @@ int Table<T>::removeLast()
 }
 
 template <typename T>
+int Table<T>::getAmount()
+{
+  return amount;
+}
+
+template <typename T>
 T Table<T>::get(int num)
 {
   if(table[num]) return * table[num];

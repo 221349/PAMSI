@@ -26,4 +26,6 @@ Dzewo posiada metody:
 
 ## Błędy
 
-  Zaimplementowane dzrewo nie posiada do końca sprawnego destruktora, pod czas usuwania węzła  jego klucz jest usuwany, jednak sam węzeł zostaje w pamięci, może groźić to wyciekami pamięci.
+  Wcześniej wykryte błędzy zostały poprawione w ostatniej wersji:
+  > Zaimplementowane dzrewo nie posiada do końca sprawnego destruktora, pod czas usuwania węzła  jego klucz jest usuwany, jednak sam węzeł zostaje w pamięci, może groźić to wyciekami pamięci.
+  > Praca z drzewem po usunięciu elementu root z drzewa o wysokości 1 powoduje SegFault.
