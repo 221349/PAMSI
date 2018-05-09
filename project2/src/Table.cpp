@@ -1,4 +1,6 @@
+#include "tableMSort.cpp"
 #include "Table.h"
+
 
 template <typename T>
 Table<T>::Table()
@@ -85,4 +87,29 @@ T Table<T>::get(int num)
 {
   if(table[num]) return * table[num];
   else return 0;
+}
+
+template <typename T>
+void Table<T>::reverse()
+{
+  T * tmp;
+  for (int i = 0; i < amount/2; i++)
+  {
+    tmp = table[i];
+    table[i] = table[amount - i -1];
+    table[amount - i -1] = tmp;
+  }
+}
+
+
+template <typename T>
+void Table<T>::sortMerge()
+{
+  tableMSort <T> *tmp = new tableMSort <T> (amount, table);
+  tmp->sortMerge();
+  for (int i = 0; i < amount; i++)
+  {
+    table[i] = tmp->table[i];
+  }
+  delete tmp;
 }
