@@ -13,6 +13,9 @@ private:
   int resize(int newSize);
   int checkSorted();
   int checkReverseSorted();
+  void swap(int a, int b);
+  void quickSortPmiddle(int begin, int end);
+  void quickSortPmiddleOrder(int begin, int end);
 //  void reverse();
 public:
 
@@ -25,8 +28,8 @@ public:
 
   T get(int num);
   int getAmount();
-  int sort();
-  void sortMerge();
+  void mergeSort();
+  void quickSort();
 };
 
 #endif

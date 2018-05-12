@@ -1,4 +1,4 @@
-#include "tableMSort.h"
+#include "../inc/tableMSort.h"
 
 template <typename T>
 tableMSort<T>::tableMSort()
@@ -94,3 +94,11 @@ void tableMSort<T>::merge(tableMSort * a, tableMSort * b)
     }
   }
 }
+
+
+template class tableMSort<int>;
+template class tableMSort<float>;
+template class tableMSort<long>;
+template class tableMSort<char>;
+template class tableMSort<double>;
+template class tableMSort<string>;

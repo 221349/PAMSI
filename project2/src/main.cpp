@@ -1,33 +1,57 @@
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
-#include "Table.cpp"
+
+#include "../inc/Table.h"
+//#include "TableSort.cpp"
+//#include "TableQiuckSort.cpp"
+#include "../inc/tableMSort.h"
 
 using namespace std;
 
 int main(int argc, char *argv[])
 {
-  Table <int> *h = new Table <int>(100000000);
-  int t = 10000000;
 
+  int t = 0;
+  int f;
+  srand (time(NULL));
   cin >> t;
+  Table <int> *h = new Table <int>(t);
   for(int i = 0; i < t; i++)
   {
-    h->add(i);
+    int tmp = 0;
+    if((rand() % 2) == 1)
+    {
+      tmp = rand() % (t*3+1)/2;
+    }
+    else
+    {
+      tmp = -rand() % (t*3+1)/2;
+    }
+    h->add(tmp);
   }
-  cout << "step 1\n";
-  cin >> t;
+  /*
+  cin >> f;
   for(int i = 0; i < t; i++)
   {
-//    h->removeLast();
-    // cout << h->get(i) << " ";
-  }
-  cout << "step 2\n";
-  cin >> t;
+    cout << h->get(i) << " ";
+  }*/
+  cout << endl;
+//  cin >> f;
+//  h->mergeSort();
+  cin >> f;
+  h->quickSort();
+  cin >> f;
+  /*
+  for(int i = 0; i < t; i++)
+  {
+     //h->removeLast();
+     cout << h->get(i) << " ";
+  }*/
+  cout << endl;
+
+  cin >> f;
   delete h;
-  cout << "step 3\n";
-  cin >> t;
-
-  cout << "end\n";
+  cin >> f;
   return 0;
 }
