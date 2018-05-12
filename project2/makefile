@@ -8,11 +8,14 @@ SRCS=$(wildcard src/*.cpp)
 DEPS=$(wildcard inc/*.h)
 OBJS= $(subst $(SRCDIR),$(OBJDIR),$(SRCS:.cpp=.o ))
 
-all: $(DEPS) $(OBJS)
+all: $(OBJDIR) $(OBJS)
 		$(CC) $(CFLAGS) -o Sort.out $(OBJS)
 
 $(OBJDIR)/%.o : $(SRCDIR)/%.cpp $(DEPS)
 	$(CC) $(CFLAGS) -c -o $@ $<
+
+$(OBJDIR):
+	mkdir -p $(OBJDIR)
 
 run:
 	./Sort.out
