@@ -1,4 +1,4 @@
-NAME=Sort.out
+NAME=sort
 CC=g++
 CFLAGS= -Wall -pedantic
 INCDIR=inc

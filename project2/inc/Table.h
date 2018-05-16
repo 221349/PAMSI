@@ -14,17 +14,25 @@ private:
 
   int checkSorted();
   int checkReverseSorted();
-  void swap(int a, int b);
+  inline void swap(int a, int b){
+    //if((a > size) || (b > size)) return;
+    T * tmp;
+    tmp = table[a];
+    table[a] = table[b];
+    table[b] = tmp;
+  }
 
   void maxHeapify(int begin, int end, int i);
   void maxHeapBuild(int begin, int end);
   void heapSort(int begin, int end);
 
   void quickSortPmiddle(int begin, int end);
-  void quickSortPmiddleOrder(int begin, int end);
-//  void reverse();
-public:
+  void quickSortPmiddlePivot(int begin, int end);
+  int  quickSortPmiddleOrder(int begin, int end);
 
+  void introSortPmiddle(int begin, int end, int maxdepth);
+  void introSortPmiddlePivot(int begin, int end, int maxdepth);
+public:
   void reverse();
   Table();
   Table(int amount);
@@ -37,6 +45,7 @@ public:
   void mergeSort();
   void quickSort();
   void heapSort();
+  void introSort();
 };
 
 template class Table<int>;

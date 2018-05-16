@@ -1,3 +1,5 @@
+#include <cmath>
+
 #include "../inc/tableMSort.h"
 #include "../inc/Table.h"
 
@@ -13,16 +15,6 @@ void Table<T>::reverse()
   }
 }
 
-template <typename T>
-void Table<T>::swap(int a, int b)
-{
-  if((a > size) || (b > size)) return;
-//  cout << "\nswap: a: " << table[a] << " b: " << table[b];
-  T * tmp;
-  tmp = table[a];
-  table[a] = table[b];
-  table[b] = tmp;
-}
 
 template <typename T>
 void Table<T>::mergeSort()
@@ -46,4 +38,11 @@ template <typename T>
 void Table<T>::heapSort()
 {
   heapSort(0,amount-1);
+}
+
+template <typename T>
+void Table<T>::introSort()
+{
+  int maxdepth = log(amount);
+  introSortPmiddle(0, amount-1, maxdepth);
 }
