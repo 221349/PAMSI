@@ -40,28 +40,28 @@ O(n log n)   | najgorszy
 
 ## Testy
 * Wszystkie elementy posortowane:
-  ![Test 0](/analysis/sorted_0.jpg)
+  ![Test 0](https://github.com/221349/PAMSI/blob/master/project2/analysis/sorted_0.jpg)
 
 * 25% początkowych elementów posortowanych:
-  ![Test 0](/analysis/sorted_25.jpg)
+  ![Test 0](https://github.com/221349/PAMSI/blob/master/project2/analysis/sorted_25.jpg)
 
 * 50% początkowych elementów posortowanych:
-  ![Test 0](/analysis/sorted_50.jpg)
+  ![Test 0](https://github.com/221349/PAMSI/blob/master/project2/analysis/sorted_50.jpg)
 
 * 75% początkowych elementów posortowanych:
-  ![Test 0](/analysis/sorted_75.jpg)
+  ![Test 0](https://github.com/221349/PAMSI/blob/master/project2/analysis/sorted_75.jpg)
 
 * 95% początkowych elementów posortowanych:
-  ![Test 0](/analysis/sorted_95.jpg)
+  ![Test 0](https://github.com/221349/PAMSI/blob/master/project2/analysis/sorted_95.jpg)
 
 * 99% początkowych elementów posortowanych:
-  ![Test 0](/analysis/sorted_99.jpg)
+  ![Test 0](https://github.com/221349/PAMSI/blob/master/project2/analysis/sorted_99.jpg)
 
 * 99.7% początkowych elementów posortowanych:
-  ![Test 0](/analysis/sorted_99.7.jpg)
+  ![Test 0](https://github.com/221349/PAMSI/blob/master/project2/analysis/sorted_99.7.jpg)
 
 * Wszystkie posortowane odwrotnie:
-  ![Test 0](/analysis/sorted_-100.jpg)
+  ![Test 0](https://github.com/221349/PAMSI/blob/master/project2/analysis/sorted_-100.jpg)
 
 
 ## Błędy
