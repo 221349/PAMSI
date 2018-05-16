@@ -33,3 +33,5 @@
 
 # Misc
 *.todo
+*.tmp
+*.m~

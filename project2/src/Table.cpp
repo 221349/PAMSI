@@ -86,3 +86,15 @@ T Table<T>::get(int num)
   if(table[num]) return * table[num];
   else return 0;
 }
+
+template <typename T>
+void Table<T>::reverse()
+{
+  T * tmp;
+  for (int i = 0; i < amount/2; i++)
+  {
+    tmp = table[i];
+    table[i] = table[amount - i -1];
+    table[amount - i -1] = tmp;
+  }
+}

@@ -4,15 +4,13 @@
 #include "../inc/Table.h"
 
 template <typename T>
-void Table<T>::reverse()
+int Table<T>::checkSorted()
 {
-  T * tmp;
-  for (int i = 0; i < amount/2; i++)
+  for(int i = 0; i < amount -1; i++)
   {
-    tmp = table[i];
-    table[i] = table[amount - i -1];
-    table[amount - i -1] = tmp;
+    if(*table[i] > *table[i+1]) return 1;
   }
+  return 0;
 }
 
 

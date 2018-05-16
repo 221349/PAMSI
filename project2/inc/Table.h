@@ -1,7 +1,7 @@
 #ifndef TABLE_H
 #define TABLE_H
 using namespace std;
-
+#include <iostream>
 
 template <typename T>
 class Table{
@@ -12,10 +12,9 @@ private:
   void writeNull();
   int resize(int newSize);
 
-  int checkSorted();
-  int checkReverseSorted();
   inline void swap(int a, int b){
     //if((a > size) || (b > size)) return;
+//    cout << "s";
     T * tmp;
     tmp = table[a];
     table[a] = table[b];
@@ -33,12 +32,12 @@ private:
   void introSortPmiddle(int begin, int end, int maxdepth);
   void introSortPmiddlePivot(int begin, int end, int maxdepth);
 public:
-  void reverse();
   Table();
   Table(int amount);
   ~Table();
   void add(T in);
   int removeLast();
+  void reverse();
 
   T get(int num);
   int getAmount();
@@ -46,6 +45,7 @@ public:
   void quickSort();
   void heapSort();
   void introSort();
+  int checkSorted();
 };
 
 template class Table<int>;
