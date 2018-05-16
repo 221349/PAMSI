@@ -1,8 +1,7 @@
-%Read
+
 clear all;
 close all;
 
-clc;
 
 TESTS  = 100;
 SIZE   =[10000, 50000, 100000, 500000, 1000000];
