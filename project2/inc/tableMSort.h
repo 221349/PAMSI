@@ -1,6 +1,5 @@
 #ifndef TABLEMSORT_H
 #define TABLEMSORT_H
-#include <iostream>
 using namespace std;
 
 template <typename T>
@@ -17,5 +16,11 @@ public:
   void split(tableMSort * a, tableMSort * b);
   void merge(tableMSort * a, tableMSort * b);
 };
+
+template class tableMSort<int>;
+template class tableMSort<float>;
+template class tableMSort<long>;
+template class tableMSort<char>;
+template class tableMSort<double>;
 
 #endif

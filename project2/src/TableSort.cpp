@@ -42,10 +42,8 @@ void Table<T>::quickSort()
   quickSortPmiddle(0,amount-1);
 }
 
-
-template class Table<int>;
-template class Table<float>;
-template class Table<long>;
-template class Table<char>;
-template class Table<double>;
-template class Table<string>;
+template <typename T>
+void Table<T>::heapSort()
+{
+  heapSort(0,amount-1);
+}

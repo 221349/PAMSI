@@ -86,10 +86,3 @@ T Table<T>::get(int num)
   if(table[num]) return * table[num];
   else return 0;
 }
-
-template class Table<int>;
-template class Table<float>;
-template class Table<long>;
-template class Table<char>;
-template class Table<double>;
-template class Table<string>;

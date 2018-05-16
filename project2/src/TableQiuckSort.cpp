@@ -38,11 +38,3 @@ void Table<T>::quickSortPmiddle(int begin, int end)
   swap((begin + (end - begin) / 2), end);
   quickSortPmiddleOrder(begin, end);
 }
-
-
-template class Table<int>;
-template class Table<float>;
-template class Table<long>;
-template class Table<char>;
-template class Table<double>;
-template class Table<string>;
