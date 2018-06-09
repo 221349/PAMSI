@@ -53,7 +53,7 @@ Board::~Board(){
 }
 
 int Board::do_move(Movement in){
-  if((in.x() >= x_size) || (in.y() >= y_size))
+  if((in.x() >= x_size) || (in.y() >= y_size) || (in.x() < 0) || (in.y() < 0))
     return -1;
   field[in.x()][in.y()] = in.cell();
   return 0;

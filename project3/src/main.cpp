@@ -9,20 +9,42 @@
 
 //using namespace std;
 
+Movement ask(){
+  int x, y;
+  std::cout << "\nX:";
+  std::cin >> x;
+  std::cout << "\nY:";
+  std::cin >> y;
+  return Movement(x, y, X);
+}
 
 int main(int argc, char *argv[])
 {
-  Board de(3,3);
+  Board desk(3,3);
   system("clear");
 
-  Movement ss(1, 1, O);
+  Movement mov(0, 0, O);
   Conditions co;
   co.row_size = 3;
   co.win_rate = 4;
   co.player0 = X;
   co.player1 = O;
 
-  MM_tree_node tree(de, ss, co, O, 9);
+  MM_tree_node tree;
+  tree.calc_best_move(desk, co, co.player0, 10);
+  //mov = ask();
+
+  while(!tree.game_over(co)){
+    if(mov.cell() == co.player1){
+      mov = ask();
+    }
+    else{
+      mov = tree.calc_best_move(desk, co, co.player1, 10);
+    }
+    desk.do_move(mov);
+    desk.display();
+  }
+
   std::cout << "\n V: " << tree.value;
   std::cin.get();
 

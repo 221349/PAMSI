@@ -9,7 +9,7 @@ Conditions::Conditions(){
 
 Movement::Movement(){
   x_ = -1;
-  y_ = -1;
+  y_ = -20;
   cell_ = BLANK;
 }
 
