@@ -1,6 +1,7 @@
 
 #include <iostream>
-#include "../inc/gameTree.h"
+
+#include "../inc/gameElements.h"
 
 void desk::display(){
   if((x_size == 0) || (y_size == 0)) return;

@@ -12,17 +12,21 @@
 
 int main(int argc, char *argv[])
 {
-  std::vector<int> a(12);
-
-  movement w1;
-  w1.x = 1;
-  w1.y = 2;
-  w1.cell = X;
-  desk de(6,5);
+  desk de(4,3);
+  int t = 0;
   system("clear");
-  de.display();
 
-  de.do_move(w1);
+  std::vector<movement> mov = de.get_moves(X);
+  while(!mov.empty()){
+    std::cin >> t;
+    if(t == 1)  de.do_move(mov.back());
+    de.display();
+    mov.pop_back();
+    std::cin.get();
+  }
+  de.display();
+  std::cout << de.scan(X, 3);
   std::cin.get();
+
   return 0;
 }

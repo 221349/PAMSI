@@ -1,45 +1,30 @@
 #ifndef GAMETREE_H
 #define GAMETREE_H
 
-#define BLANK 32
-#define X 88
-#define O 79
-
-#include <iostream>
 #include <vector>
 
-class movement{
+#include "gameElements.h"
+
+
+class ab{
 public:
-  int x, y;
-  char cell;
+  int alpha = 0;
+  int beta = 0;
 };
-
-class conditions{
-public:
-  int row_size; // how many items must be lined up to win
-};
-
-class desk{
-public:
-  char ** field;
-  int x_size; // desk size by X
-  int y_size; // desk size by Y
-
-  desk(int x_size, int y_size);
-  ~desk();
-
-  void display();
-  int do_move(const movement in);
-  int count(const char in);
-};
-
 
 class mm_tree_node{
 public:
   int value;
   std::vector<mm_tree_node> children;
-  movement move;
+  //movement move;
   desk state;
+
+  mm_tree_node();
+  mm_tree_node(const mm_tree_node &in);
+  void operator = (const mm_tree_node &in);
+  mm_tree_node(const desk &state_in, const movement &move, const conditions &rules, int depth);
+
+  int game_over(const conditions &rules);
 };
 
 #endif
