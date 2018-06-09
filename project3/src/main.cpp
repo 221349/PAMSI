@@ -26,12 +26,12 @@ int main(int argc, char *argv[])
   Movement mov(0, 0, O);
   Conditions co;
   co.row_size = 3;
-  co.win_rate = 4;
+  co.win_rate = 6;
   co.player0 = X;
   co.player1 = O;
-
+  desk.display();
   MM_tree_node tree;
-  tree.calc_best_move(desk, co, co.player0, 10);
+  tree.calc_best_move(desk, co, co.player0, 1);
   //mov = ask();
 
   while(!tree.game_over(co)){
@@ -39,7 +39,7 @@ int main(int argc, char *argv[])
       mov = ask();
     }
     else{
-      mov = tree.calc_best_move(desk, co, co.player1, 10);
+      mov = tree.calc_best_move(desk, co, co.player1, 100);
     }
     desk.do_move(mov);
     desk.display();
