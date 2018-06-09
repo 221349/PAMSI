@@ -3,7 +3,7 @@
 
 #include "../inc/gameElements.h"
 
-void desk::display(){
+void Board::display(){
   if((x_size == 0) || (y_size == 0)) return;
   std::cout << "╔═══╦";
   for(int x = 0; x < x_size - 1; x++) std::cout << "═══╦";

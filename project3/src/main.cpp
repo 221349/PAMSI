@@ -12,20 +12,18 @@
 
 int main(int argc, char *argv[])
 {
-  desk de(4,3);
-  int t = 0;
+  Board de(3,3);
   system("clear");
 
-  std::vector<movement> mov = de.get_moves(X);
-  while(!mov.empty()){
-    std::cin >> t;
-    if(t == 1)  de.do_move(mov.back());
-    de.display();
-    mov.pop_back();
-    std::cin.get();
-  }
-  de.display();
-  std::cout << de.scan(X, 3);
+  Movement ss(1, 1, O);
+  Conditions co;
+  co.row_size = 3;
+  co.win_rate = 4;
+  co.player0 = X;
+  co.player1 = O;
+
+  MM_tree_node tree(de, ss, co, O, 9);
+  std::cout << "\n V: " << tree.value;
   std::cin.get();
 
   return 0;

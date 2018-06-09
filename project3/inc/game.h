@@ -6,13 +6,13 @@
 #include "gameTree.h"
 
 
-class game{
+class Game{
 public:
   std::vector<position> moves;
-  desk state;
-  conditions rules;
+  Board state;
+  Conditions rules;
 
-  do move(const movement in);
+  do move(const Movement in);
 };
 
 #endif

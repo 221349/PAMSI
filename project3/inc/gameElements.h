@@ -9,44 +9,57 @@
 #define DEFAULT_SIZE 3
 
 
-class conditions{
+
+class Conditions{
 public:
   int row_size; // how many items must be lined up to win
   char player0, player1;
-
-  conditions();
+  int win_rate;
+  Conditions();
 };
 
-class movement{
+class Movement{
 private:
   int x_, y_;
   char cell_;
 public:
-  movement();
-  movement(int x, int y, char cell);
-  movement(const movement &in);
-  void operator = (const movement &in);
+  Movement();
+  Movement(int x, int y, char cell);
+  Movement(const Movement &in);
+  void operator = (const Movement &in);
 
   inline int x() const { return x_; }
   inline int y() const { return y_; }
   inline char cell() const { return cell_; }
 };
 
-class desk{
+class Board{
 private:
   char ** field;
-  int x_size; // desk size by X
-  int y_size; // desk size by Y
+  int x_size; // Board size by X
+  int y_size; // Board size by Y
 
 public:
-  desk();
-  desk(int x_size, int y_size);
-  ~desk();
+  Board();
+  Board(int x_size, int y_size);
+  Board(const Board &in);
+  void operator = (const Board &in);
+  ~Board();
+
+  inline int x() const { return x_size; }
+  inline int y() const { return y_size; }
+  inline char ** field_pointer() const { return field; }
 
   void display();
-  int do_move(movement in);
+  int do_move(Movement in);
   int count(char in);
-  std::vector<movement> get_moves(const char in);
+  std::vector<Movement> get_moves(const char in);
+
+  int scan(const Movement &move, const int size);
+  int scan_horizontal(const Movement &move, const int size);
+  int scan_vertical(const Movement &move, const int size);
+  int scan_diagonal_NW(const Movement &move, const int size);
+  int scan_diagonal_SW(const Movement &move, const int size);
 
   int scan(const char target, const int size);
   int scan_horizontal(const char target, const int size);
@@ -54,5 +67,7 @@ public:
   int scan_diagonal_NW(const char target, const int size);
   int scan_diagonal_SW(const char target, const int size);
 };
+
+char opposite(const char in, const Conditions &rules);
 
 #endif

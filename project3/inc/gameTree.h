@@ -12,19 +12,28 @@ public:
   int beta = 0;
 };
 
-class mm_tree_node{
+class MM_tree_node{
 public:
   int value;
-  std::vector<mm_tree_node> children;
-  //movement move;
-  desk state;
+  std::vector<MM_tree_node> children;
+  //Movement move;
+  Board state;
 
-  mm_tree_node();
-  mm_tree_node(const mm_tree_node &in);
-  void operator = (const mm_tree_node &in);
-  mm_tree_node(const desk &state_in, const movement &move, const conditions &rules, int depth);
+  MM_tree_node();
+  MM_tree_node(const MM_tree_node &in);
+  void operator = (const MM_tree_node &in);
+  MM_tree_node(const Board &state_in, const Movement &move, const Conditions &rules, char player, int depth);
 
-  int game_over(const conditions &rules);
+  void calc_value(const Conditions &rules, const char player);
+  void min();
+  void max();
+  Movement min_move();
+  Movement max_move();
+
+  void disp();
+
+  int game_over(const Conditions &rules);
+  int game_over(const Conditions &rules, const Movement &move);
 };
 
 #endif
