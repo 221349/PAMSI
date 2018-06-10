@@ -1,5 +1,4 @@
 #include "../inc/gameTree.h"
-#include <iostream>
 
 MM_tree_node::MM_tree_node(const Board &state_in, const Movement &move, const Conditions &rules, const char player, int depth){
   state = state_in;
@@ -8,7 +7,6 @@ MM_tree_node::MM_tree_node(const Board &state_in, const Movement &move, const Co
   value = 0;
   if(depth == 0) {
     calc_value(rules, player);
-//     disp();
     return;
   }
   build(rules, move, player, depth);
@@ -18,7 +16,6 @@ void MM_tree_node::build(const Conditions &rules, const Movement &move, char pla
   std::vector<Movement> possible_moves = state.get_moves(opposite(move.cell(), rules));
   if(possible_moves.empty() || state.scan(move, rules.row_size)){
     calc_value(rules, player);
-//     disp();             ////////////////////////
     return;
   }
   while (!possible_moves.empty()) {
@@ -34,7 +31,6 @@ Movement MM_tree_node::calc_best_move(const Board &state_in, const Conditions &r
   value = 0;
   if(depth == 0) {
     calc_value(rules, player);
-//     disp();
     return move_;
   }
   build_move(rules, player, depth);
@@ -45,7 +41,6 @@ void MM_tree_node::build_move(const Conditions &rules, char player, int depth){
   std::vector<Movement> possible_moves = state.get_moves(player);
   if(possible_moves.empty()){
     calc_value(rules, player);
-//     disp();             ////////////////////////
     return;
   }
   while (!possible_moves.empty()) {

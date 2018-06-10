@@ -1,8 +1,6 @@
 #include "../inc/gameTree.h"
-#include <iostream>
 
 void MM_tree_node::min(){
-//  disp();             ////////////////////////
   if(children.empty()) return;
   int tmp = children.back().value;
   while (!children.empty()) {
@@ -15,7 +13,6 @@ void MM_tree_node::min(){
 }
 
 void MM_tree_node::max(){
-//  disp();             ////////////////////////
   if(children.empty()) return;
   int tmp = children.back().value;
   while (!children.empty()) {
@@ -28,7 +25,6 @@ void MM_tree_node::max(){
 }
 
 Movement MM_tree_node::min_move(){
-//   disp();             ////////////////////////
   Movement worst_move;
   if(children.empty()) return worst_move;
   int tmp = children.back().value;
@@ -45,8 +41,7 @@ Movement MM_tree_node::min_move(){
 }
 
 Movement MM_tree_node::max_move(){
-//  disp();             ////////////////////////
-  Movement best_move(-5,-5, 'G');    /////////////FIX
+  Movement best_move;
   if(children.empty()) {
     return best_move;
   }

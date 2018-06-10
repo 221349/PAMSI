@@ -1,4 +1,4 @@
-#include "../inc/gameElements.h"
+#include "../inc/gameBoard.h"
 
 Board::Board(){
   x_size = 0;
@@ -52,10 +52,48 @@ Board::~Board(){
   delete[] field;
 }
 
+void Board::clear(){
+  for(int x = 0; x < x_size; x++){
+    for(int y = 0; y < y_size; y++){
+      field[x][y] = BLANK;
+    }
+  }
+}
+
+int Board::check_free(int x, int y){
+  if((x >= x_size) || (y >= y_size) || (x < 0) || (y < 0))
+    return -1;
+  if(field[x][y] == BLANK) return 0;
+  else return 1;
+}
+
+void Board::setup(int x_size_, int y_size_){
+  for(int x = 0; x < x_size; x++)
+    delete[] field[x];
+  delete[] field;
+
+  x_size = x_size_;
+  y_size = y_size_;
+  field = new char * [x_size];
+  for(int x = 0; x < x_size; x++){
+    field[x] = new char[y_size];
+    for(int y = 0; y < y_size; y++){
+      field[x][y] = BLANK;
+    }
+  }
+}
+
 int Board::do_move(Movement in){
   if((in.x() >= x_size) || (in.y() >= y_size) || (in.x() < 0) || (in.y() < 0))
     return -1;
   field[in.x()][in.y()] = in.cell();
+  return 0;
+}
+
+int Board::undo_move(Movement in){
+  if((in.x() >= x_size) || (in.y() >= y_size) || (in.x() < 0) || (in.y() < 0))
+    return -1;
+  field[in.x()][in.y()] = BLANK;
   return 0;
 }
 
@@ -279,4 +317,11 @@ int Board::scan(const Movement &move, const int size){
          scan_vertical(move, size) +
          scan_diagonal_NW(move, size) +
          scan_diagonal_SW(move, size);
+}
+
+int Board::game_over(const Conditions &rules){
+  if(scan(rules.player0, rules.row_size)) return 1;
+  if(scan(rules.player1, rules.row_size)) return 2;
+  if(!count(BLANK)) return -1;
+  return 0;
 }

@@ -1,7 +1,6 @@
-
 #include <iostream>
 
-#include "../inc/gameElements.h"
+#include "../inc/gameBoard.h"
 
 void Board::display(){
   if((x_size == 0) || (y_size == 0)) return;

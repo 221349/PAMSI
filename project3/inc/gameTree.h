@@ -4,6 +4,7 @@
 #include <vector>
 
 #include "gameElements.h"
+#include "gameBoard.h"
 
 
 class ab{
