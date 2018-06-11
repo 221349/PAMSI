@@ -27,7 +27,7 @@ void MM_tree_node::max(){
 Movement MM_tree_node::min_move(){
   Movement worst_move;
   if(children.empty()) return worst_move;
-  int tmp = value;
+  int tmp = children.back().value;
   worst_move = children.back().move_;
   while (!children.empty()) {
     if (children.back().value < tmp) {
@@ -42,11 +42,8 @@ Movement MM_tree_node::min_move(){
 
 Movement MM_tree_node::max_move(){
   Movement best_move;
-  if(children.empty()) {
-    return best_move;
-  }
-
-  int tmp = value;
+  if(children.empty()) return best_move;
+  int tmp = children.back().value;
   best_move = children.back().move_;
   while (!children.empty()) {
     if (children.back().value > tmp) {
