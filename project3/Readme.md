@@ -78,11 +78,18 @@ Na chwilę obecną błędów nie odnaleziono
 
 ## Materiały
 
-  [MIT OpenCourseWare. 6. Search: Games, Minimax, and Alpha-Beta](https://www.youtube.com/watch?v=STjW3eH0Cik)
+  [MIT OpenCourseWare. 6. Search: Games, Minimax, and Alpha-Beta](https://www.youtube.com/watch?v=STjW3eH0Cik)\
+
   [Francisco Iacobelli. alpha beta prunning](https://www.youtube.com/watch?v=d2maa6k2gYE)
+
   [Habr.com, TheHorse: Минимакс на примере игры в зайца и волков](https://habr.com/post/146088/)
+
   [cplusplus.com](http://www.cplusplus.com)
+
   [stackoverflow.com](https://stackoverflow.com)
+
   [cppreference.com](https://cppreference.com)
+
   [Wiki: Alpha–beta pruning](https://en.wikipedia.org/wiki/Alpha%E2%80%93beta_pruning)
+
   [Wprowadzenie do algorytmów, Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest](https://en.wikipedia.org/wiki/Introduction_to_Algorithms)
