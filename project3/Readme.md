@@ -10,7 +10,21 @@ Do obliczenia ruchu tworzone jest drzewo gry, węzły którego są usuwane odraz
 
 Wyposażony program jest w tekstowy interfejs graficzny. Potrafi jednak wyświetlać pole do grania i wszystkie niezbędne informacje.
 
-  Gra posiada dość elastyczne ustawienia "s - Setup" :
+Wygląd pola:
+
+<pre>
+╔═══╦═══╦═══╦═══╗
+║   ║ 0 ║ 1 ║ 2 ║
+╠═══╬═══╬═══╬═══╣
+║ 0 ║ O │   │ O ║
+╠═══╬───┼───┼───╢
+║ 1 ║   │ X │   ║
+╠═══╬───┼───┼───╢
+║ 2 ║ X │   │   ║
+╚═══╩═══╧═══╧═══╝
+</pre>
+
+  Gra posiada dość elastyczne ustawienia `s - Setup` :
 * dowolne wymiary tablicy (x,y>0, x,y<rozmiar int)
 * długość linii dla wygrania
 * tryby gry:
@@ -18,13 +32,16 @@ Wyposażony program jest w tekstowy interfejs graficzny. Potrafi jednak wyświet
   * gracz-komputer
   * komputer-komputer
 * który gracz jest pierwszy
+* czas pauzy między ruchem computera a ruchem computera
 * zmiana symboli grzczy
 * ograniczenie głębokości wyszukiwania
 * mnożnik dla wygrania (system oceny ruchów)
 * włączenie/wyłaczenie optymalizacji alfa-Beta
 * włączenie/wyłaczenie wyświetlania dodatkowej informacji
 
-Dodatkowo można użyć gotowych szablonów konfiguracji 'p' - '`code`Presets'
+Dodatkowo można użyć gotowych szablonów konfiguracji `p - Presets`:
+
+Program pamięta histoeię ruchów. Po ukończeniu gry rownież jest możliwość cofnięcia się w historii i zacząć od pewnego momentu w czasie. Do tego można zmienic ustawienia przed rozpoczęcie(zmiania rozmiaru pola spowoduje wyczyszczenie pola).
 
 ## Testy
 
@@ -32,8 +49,11 @@ Optymalizacja alfa-beta pozwala znacznie przyspieszyć działanie algorytmu
 
 Przeprowadzone testy na polu 4x4, długoś dla wygrania - 4
 
-Pierwszy ruchc - ruch gracza:
+Pierwszy ruch - ruch gracza X, klatka(o,o):
 
+Następny ruch - obliczenie komputerem ruchu dla O.
+
+Interfejs gry:
 
 <pre>
 ╔═══╦═══╦═══╦═══╦═══╗
@@ -63,8 +83,8 @@ Głębia  | Z alfa-beta | Bez alfa-beta
 5 | <pre>time: 616 ms, tree nodes: 156618</pre>| <pre>time: 1415 ms, tree nodes: 396076</pre>
 6 | <pre>time: 3416 ms, tree nodes: 824852</pre>| <pre>time: 14444 ms, tree nodes: 3999676</pre>
 7 | <pre>time: 12491 ms, tree nodes: 2859816</pre>| <pre>time: 141351 ms, tree nodes: 36218236</pre>
-8 | <pre>time: 68219 ms, tree nodes: 14376028</pre>|  -
-9 | <pre>time: 203276 ms, tree nodes: 43600003</pre>|  -
+8 | <pre>time: 68219 ms, tree nodes: 14376028</pre>| <pre>time: 985166 ms, tree nodes: 292644220</pre>
+9 | <pre>time: 203276 ms, tree nodes: 43600003</pre>| <pre>time: 6560408 ms, tree nodes: 2042604796</pre>
 
 Brak pomiarów 8 i 9 dla 'Bez alfa-beta' ze względu na duży czas wykonania
 
@@ -74,11 +94,16 @@ Cechą tej gry jest to, że czas wzrasta eksponencjalnie wraz z wzrostem głebok
 
 ## Błedy
 
-Na chwilę obecną błędów nie odnaleziono
+Na chwilę obecną wykryto następujące błędy:
+
+* Wpisanie symbolu/li który/e nie są cyframi w pole przeznaczone dla liczby powoduje zawieszenie się programu
+
+* Niektóre terminale/konsole nie zawsze wyłapują uniksowe polecenie `$ clear`, które służy do wyczyszczenia ekranu, co powoduje zsunięcie się interfejsu w dół (naprawia się 'scrollem' w dół)
+
 
 ## Materiały
 
-  [MIT OpenCourseWare. 6. Search: Games, Minimax, and Alpha-Beta](https://www.youtube.com/watch?v=STjW3eH0Cik)\
+  [MIT OpenCourseWare. 6. Search: Games, Minimax, and Alpha-Beta](https://www.youtube.com/watch?v=STjW3eH0Cik)
 
   [Francisco Iacobelli. alpha beta prunning](https://www.youtube.com/watch?v=d2maa6k2gYE)
 
