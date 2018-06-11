@@ -1,4 +1,4 @@
-#include "../inc/gameBoard.h"
+#include "../inc/Board.h"
 
 Board::Board(){
   x_size = 0;

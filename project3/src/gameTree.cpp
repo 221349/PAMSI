@@ -1,4 +1,4 @@
-#include "../inc/gameTree.h"
+#include "../inc/Tree.h"
 #include <iostream>
 
 void MM_tree_node::disp(){

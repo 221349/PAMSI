@@ -1,4 +1,4 @@
-#include "../inc/gameElements.h"
+#include "../inc/Elements.h"
 
 Conditions::Conditions(){
   row_size = 3;

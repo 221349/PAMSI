@@ -2,7 +2,7 @@
 #define GAMEBOARD_H
 
 #include <vector>
-#include "../inc/gameElements.h"
+#include "Elements.h"
 
 class Board{
 private:

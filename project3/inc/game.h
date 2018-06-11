@@ -2,8 +2,15 @@
 #define GAME_H
 
 #include <vector>
+#include "Tree.h"
 
-#include "gameTree.h"
+class Info{
+public:
+  long time;
+  int value;
+  int nodes;
+  Movement move;
+};
 
 class Game{
 public:
@@ -17,6 +24,7 @@ public:
   bool AI0;
   bool AI1;
   bool info;
+  Info info_data;
   int delay_time; //[ms]
 
   Game();
@@ -29,7 +37,7 @@ public:
   void jump_back_menu();
   void game_over_menu();
   void game_over();
-  void basic_setup();
+  void presets();
   void setup();
 
   void toggle_mode();

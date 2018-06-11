@@ -25,18 +25,29 @@ Movement Game::ask_turn(char player){
   return Movement(x, y, player);
 }
 
+void Game::show_info(){
+  if(!info) return;
+  std::cout << "\n  Last move: (" << info_data.move.x() << ","
+                << info_data.move.y() << "): " << info_data.move.cell()
+            << "\n    time: " << info_data.time << " ms"
+            << "\n    tree nodes: " << info_data.nodes
+            << "\n    move value: " << info_data.value << "\n";
+}
 void Game::play(){
   Movement move();
   system("clear");
   state.display();
   do_move(first_player);
+  if(AI1 && AI0) delay(delay_time);
   system("clear");
   state.display();
+  show_info();
   while(!state.game_over(rules)){
     do_move(opposite(history.back().cell(), rules));
     if(AI1 && AI0) delay(delay_time);
     system("clear");
     state.display();
+    show_info();
   }
   game_over();
 }
@@ -62,8 +73,12 @@ void Game::jump_back_menu(){
   if(answer == 'p') {
     first_player = opposite(history.back().cell(), rules);
     play();
+    return;
   }
-  if(answer == 'b') jump_back();
+  if(answer == 'b') {
+    jump_back();
+    return;
+  }
   if(answer == 's') {
     setup();
     system("clear");
@@ -97,8 +112,12 @@ void Game::game_over_menu(){
     state.clear();
     first_player = opposite(first_player, rules);
     play();
+    return;
   }
-  if(answer == 'b') jump_back();
+  if(answer == 'b') {
+    jump_back();
+    return;
+  }
   if(answer == 'q') {
     state.clear();
     return;
@@ -148,29 +167,66 @@ int Game::number_set(char x){
   return size;
 }
 
-void Game::basic_setup(){
+void Game::presets(){
   system("clear");
-  std::cout << "\n\n  Set board dimensions & row length to win"
-            << "\n    x: ";
-  int size = number_set('x');
-  Board state(size, size);
-  rules.row_size = size;
-  char answer = 0;
-  while((answer == 'h') || (answer == 'c')){
-    std::cout << "\nWho's playing first?"
-              << "\n'h' - human, 'c' - computer"
-              << " player 1: ";
-    answer = ask_char();
+  std::cout << "\n  Presets:"
+            << "\n   1: Default, 3x3"
+            << "\n   2: bot VS bot 4x4"
+            << "\n   3: no AB, 4x4 with info"
+            << "\n   4: with AB, 4x4 with info"
+            << "\n>";
+  int answer = ask_char();
+
+  if(answer == '1') {
+    state.setup(3,3);
+    rules.row_size = 3;
+    rules.win_rate = 6;
+    depth = 9;
+    ab = 1;
+    first_player = X;
+    AI0 = 0;
+    AI1 = 1;
+    return;
   }
-  if(answer == 'h') AI0 = 0;
-  else AI0 = 1;
-  while((answer == 'h') || (answer == 'c')){
-    std::cout << "\n'h' - human, 'c' - computer"
-              << " player 2: ";
-    answer = ask_char();
+  if(answer == '2') {
+    state.setup(4,4);
+    rules.row_size = 4;
+    rules.win_rate = 12;
+    depth = 6;
+    ab = 1;
+    first_player = X;
+    AI0 = 1;
+    AI1 = 1;
+    delay_time = 500;
+    return;
   }
-  if(answer == 'h') AI1 = 0;
-  else AI1 = 1;
+  if(answer == '3') {
+    state.setup(4,4);
+    rules.row_size = 4;
+    rules.win_rate = 12;
+    depth = 6;
+    ab = 0;
+    first_player = X;
+    AI0 = 0;
+    AI1 = 1;
+    delay_time = 500;
+    info = 1;
+    return;
+  }
+  if(answer == '4') {
+    state.setup(4,4);
+    rules.row_size = 4;
+    rules.win_rate = 12;
+    depth = 6;
+    ab = 0;
+    first_player = X;
+    AI0 = 0;
+    AI1 = 1;
+    delay_time = 500;
+    info = 1;
+    return;
+  }
+  presets();
 }
 
 void about(){
@@ -184,16 +240,19 @@ void about(){
 void Game::menu() {
   system("clear");
   std::cout << "\n\n  n - Start new game"
-            << "\n  b - Basic setup"
-            << "\n  s - Advanced setup"
+            << "\n  p - Presets"
+            << "\n  s - Setup"
             << "\n  a - About"
             << "\n  q - Quit"
             << "\n>";
   char answer = ask_char();
   if(answer == 'n') play();
-  if(answer == 'b') basic_setup();
+  if(answer == 'p') presets();
   if(answer == 's') setup();
-  if(answer == 'a') about();
+  if(answer == 'a') {
+    about();
+    std::cin.get();
+  }
   if(answer == 'q') return;
   menu();
 }
@@ -211,7 +270,7 @@ void Game::setup(){
   if(first_player == rules.player0) std::cout << "Player 1";
   else std::cout << "Player 2";
   std::cout << "\n    Delay time [ms],    d: ";
-  if(delay_time > 0) std::cout << delay_time;
+  if(delay_time >= 0) std::cout << delay_time;
   else std::cout << "Press Enter for next move";
   std::cout << "  (for computer VS computer mode only)";
   std::cout << "\n\n  Board_size [x,y]: "

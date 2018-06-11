@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "../inc/gameBoard.h"
+#include "../inc/Board.h"
 
 void Board::display(){
   if((x_size == 0) || (y_size == 0)) return;
