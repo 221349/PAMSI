@@ -218,7 +218,7 @@ void Game::presets(){
     rules.row_size = 4;
     rules.win_rate = 12;
     depth = 6;
-    ab = 0;
+    ab = 1;
     first_player = X;
     AI0 = 0;
     AI1 = 1;
