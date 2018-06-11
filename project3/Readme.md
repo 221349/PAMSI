@@ -62,10 +62,9 @@ Głębia  | Z alfa-beta | Bez alfa-beta
 4 | <pre>time: 100 ms, tree nodes: 23981</pre>| <pre>time: 129 ms, tree nodes: 35716</pre>
 5 | <pre>time: 616 ms, tree nodes: 156618</pre>| <pre>time: 1415 ms, tree nodes: 396076</pre>
 6 | <pre>time: 3416 ms, tree nodes: 824852</pre>| <pre>time: 14444 ms, tree nodes: 3999676</pre>
-7 | <pre>time: 12491 ms, tree nodes: 2859816</pre>| <pre>time: 141351 ms, tree nodes: 36218236
-</pre>
-8 | <pre>time: 68219 ms, tree nodes: 14376028</pre>|  brak
-9 | <pre>time: 203276 ms, tree nodes: 43600003</pre>|  brak
+7 | <pre>time: 12491 ms, tree nodes: 2859816</pre>| <pre>time: 141351 ms, tree nodes: 36218236</pre>
+8 | <pre>time: 68219 ms, tree nodes: 14376028</pre>|  -
+9 | <pre>time: 203276 ms, tree nodes: 43600003</pre>|  -
 
 Brak pomiarów 8 i 9 dla 'Bez alfa-beta' ze względu na duży czas wykonania
 
